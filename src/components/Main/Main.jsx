@@ -6,7 +6,6 @@ import { ViewSearch } from '../ViewSearch';
 const Main = () => {
   return (
     <div>
-      <Search />
       <ViewSearch />
     </div>
   );
