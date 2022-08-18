@@ -1,13 +1,13 @@
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
 import { Search } from '../Search';
-import { ViewSearch } from '../ViewSearch';
+// import { ViewSearch } from '../ViewSearch';
 
 const Main = () => {
   return (
     <div>
       <Search />
-      <ViewSearch />
+      {/* <ViewSearch /> */}
     </div>
   );
 };
