@@ -1,16 +1,19 @@
 import React from 'react';
 import useFetchAxios from '../../helpers/useFetchAxios';
+import { useClimaContex } from '../../providers/ClimaProvider';
 import { Card } from '../Card';
 
-const ViewSearch = (props) => {
-  console.log(props.ubicacion);
+const ViewSearch = ({ flagSearch }) => {
   // const [dataclima, setDataClima] = useState([]);
-  const dataclima = useFetchAxios(`https://api.weatherapi.com/v1/current.json?key=6be8c28794924ed8a2a184922222905&q=${props.ubicacion}&aqi=no`);
+  const location = useClimaContex();
+  console.log(location);
+  const dataclima = useFetchAxios('https://api.weatherapi.com/v1/current.json?key=6be8c28794924ed8a2a184922222905&q=', location);
   console.log(dataclima.data);
   // if (!dataclima.loading) {
   //   console.log(dataclima.data);
   // }
   return <>
+  <button className='btn btn-primary' onClick={flagSearch}>Search City</button>
   {!dataclima.loading && <Card temp={dataclima.data.current.temp_c}
   time={dataclima.data.location.localtime}
   region={dataclima.data.location.region}
@@ -18,7 +21,7 @@ const ViewSearch = (props) => {
   wind_kph={dataclima.data.current.wind_kph}
   humidity={dataclima.data.current.humidity}
   icon={dataclima.data.current.condition.icon}
-  />};
+  />}
   </>;
 };
 
