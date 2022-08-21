@@ -12,7 +12,6 @@ body {
 
 body {
     background-color: #a5a5b1;
-    display: grid;
     place-items: center;
 
 }
@@ -37,7 +36,7 @@ body {
 .temp-details>p>span,
 .grey {
     color: #a3acc1;
-    font-size: 12px;
+    font-size: 20px;
 }
 
 .fa {
