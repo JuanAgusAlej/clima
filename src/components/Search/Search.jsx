@@ -1,25 +1,3 @@
-// import React, { useState } from 'react';
-// import { ViewSearch } from '../ViewSearch';
-
-// const Search = () => {
-//   const [value, setValue] = useState('');
-//   const [bandclick, setBandClick] = useState(false);
-
-//   function handle() {
-//     // console.log(value);
-//     setBandClick(true);
-//   }
-
-//   return (<>
-//       <input value={value} onChange={(e) => { setValue(e.target.value); }} />
-//       <button onClick={handle}>Search</button>
-//       {bandclick && <ViewSearch ubicacion={ value }/>};
-//       </>
-//   );
-// };
-
-// export default Search;
-
 import React, { useState } from 'react';
 import {
   useClimaToggleContex,
@@ -38,8 +16,9 @@ const Search = ({ flagSearch }) => {
       setValue(e.target.value);
     }
   };
-  console.log(filterLocation);
-  const onSubmit = () => {
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     if (regionValue === '') {
       setLocation(value);
     } else {
@@ -49,18 +28,16 @@ const Search = ({ flagSearch }) => {
   };
   const handleClick = (e) => {
     setRegionValue(e.target.value);
-    console.log(e.target.value);
   };
 
   return (
     <>
+      <h1>Check the weather</h1>
       <form onSubmit={onSubmit}>
         <input onChange={handleChange} />
         <button className="btn btn-primary">Search City</button>
         <select
-          className="form-select"
-          multiple
-          aria-label="multiple select example"
+          className="selectpicker" data-size="4"
         >
           {filterLocation?.data?.map((region) => (
             <option key={region.id} onClick={handleClick} value={region.name}>{`${region.name}, ${region.region}`}</option>
