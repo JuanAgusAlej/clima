@@ -12,7 +12,7 @@ export const useClimaToggleContex = () => {
 };
 
 export const ClimaProvider = ({ children }) => {
-  const [clima, setClima] = useState([]);
+  const [clima, setClima] = useState();
   return (
     <climaContex.Provider value={clima}>
       <climaToggleContex.Provider value={setClima}>
