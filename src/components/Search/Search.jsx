@@ -7,15 +7,6 @@ import useAxios from '../../helpers/useAxios';
 
 const Search = ({ flagSearch, geoLocation }) => {
   const setLocation = useClimaToggleContex();
-  const location = useClimaContex();
-  const [value, setValue] = useState(location);
-  const [regionValue, setRegionValue] = useState('');
-  const filterLocation = useAxios('https://api.weatherapi.com/v1/search.json?key=6be8c28794924ed8a2a184922222905&q=', value);
-  const handleChange = (e) => {
-    if (e.target.value.length > 2) {
-      setValue(e.target.value);
-    }
-  };
   const geoLocationSet = () => {
     if (geoLocation) {
       setLocation(geoLocation);
@@ -23,6 +14,15 @@ const Search = ({ flagSearch, geoLocation }) => {
     }
   };
   geoLocationSet();
+  const location = useClimaContex();
+  const [value, setValue] = useState(location);
+  const [regionValue, setRegionValue] = useState('');
+  const filterLocation = value ? useAxios('https://api.weatherapi.com/v1/search.json?key=6be8c28794924ed8a2a184922222905&q=', value) : null;
+  const handleChange = (e) => {
+    if (e.target.value.length > 2) {
+      setValue(e.target.value);
+    }
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     if (regionValue === '') {
